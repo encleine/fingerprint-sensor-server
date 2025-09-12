@@ -39,6 +39,7 @@ func HandleCapture(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if _, err := os.Stat(venvPythonPath); err == nil {
+		log.Println("Found virtual environment python executable at", venvPythonPath)
 		venvPythonPath, _ = filepath.Abs(venvPythonPath)
 		pythonExec = venvPythonPath
 	}

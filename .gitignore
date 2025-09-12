@@ -1,4 +1,4 @@
 
-build/*
 venv/*
 tmp/*
+fingerprint-*

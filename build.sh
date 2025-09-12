@@ -1,8 +1,8 @@
 #!/bin/bash
 
 
-LINUX_OUTPUT="build/fingerprint-server-linux"
-WINDOWS_OUTPUT="build/fingerprint-server-windows.exe"
+LINUX_OUTPUT="fingerprint-server-linux"
+WINDOWS_OUTPUT="fingerprint-server-windows.exe"
 SOURCE_FILE="main.go"
 
 echo "Starting build process..."
