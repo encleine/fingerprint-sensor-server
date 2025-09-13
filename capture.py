@@ -209,9 +209,7 @@ def main():
     h = None
     try:
         h, mode = open_device_resilient()
-        print(f"Opened in {mode} mode. Place finger on the sensor …")
         img = wait_for_finger_and_capture(h, DEFAULT_ADDR, TIMEOUT_SECONDS)
-        print(f"Captured {len(img)} bytes. Saving BMP → {OUTPUT_BMP}")
         send_image_to_stdout(img)
         print("Done.")
     finally:
