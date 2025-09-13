@@ -15,7 +15,7 @@ import (
 const pythonScript = "capture.py"
 
 func main() {
-	http.HandleFunc("GET /capture", HandleCapture)
+	http.HandleFunc("GET /capture", corsMiddleWare(HandleCapture))
 	log.Println("Starting server on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
@@ -74,4 +74,15 @@ func HandleCapture(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+}
+
+func corsMiddleWare(callback func(w http.ResponseWriter, r *http.Request)) func(http.ResponseWriter, *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With, auth")
+		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET, PUT, DELETE")
+
+		callback(w, r)
+	}
 }
